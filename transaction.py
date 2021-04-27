@@ -64,36 +64,3 @@ class Transaction:
             self.Transaction_table.insert('',i,values=(row[0],row[1],row[2],row[3],row[4], row[5]))
             i=i+1
         self.Transaction_table.pack()
-
-    def make_delete_table(self):
-        connection = database.connect()
-        self.s=ttk.Style()
-        self.s.theme_use("clam")
-        self.s.configure("Treeview.Heading", background="#c0e218", foreground='white',font=('Arial', 13,'bold'))
-        self.s.configure("Treeview",background="white",rowheight=35,fieldbackground="white",font=('Arial',11))
-        self.s.map('Treeview',background=[('selected','darkslategray')])
-        self.Transaction_table = ttk.Treeview(column=("id","date","category","amount","income"),xscrollcommand=self.scroll_x.set, yscrollcommand=self.scroll_y.set)
-        self.scroll_x.config(command=self.Transaction_table.xview)
-        self.scroll_y.config(command=self.Transaction_table.yview)
-        self.Transaction_table.heading("id", text="ID",anchor="center")
-        self.Transaction_table.heading("date", text="DATE",anchor="center")
-        self.Transaction_table.heading("category", text="CATEGORY",anchor="center")
-        self.Transaction_table.heading("amount", text="EXPENSE",anchor="center")
-        self.Transaction_table.heading("income", text="INCOME",anchor="center")
-
-        self.Transaction_table['show'] = 'headings'
-        self.Transaction_table.column("id", width=100,anchor="center")
-        self.Transaction_table.column("date", width=100,anchor="center")
-        self.Transaction_table.column("category", width=100,anchor="center")
-        self.Transaction_table.column("amount", width=100,anchor="center")
-        self.Transaction_table.column("income", width=100,anchor="center")
-
-        self.Transaction_table.pack(fill=BOTH, expand=1)
-
-        data=database.get_delete_table(connection)
-
-        i=0
-        for row in data:
-            self.Transaction_table.insert('',i,values=(row[0],row[1],row[2],row[3],row[4],row[5],row[6]))
-            i=i+1
-        self.Transaction_table.pack()

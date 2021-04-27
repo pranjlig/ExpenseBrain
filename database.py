@@ -40,7 +40,7 @@ def check_password(connection, username, password):
 
 def add_user(connection, username, password):
     with connection:
-        data = connection.execute('SELECT id FROM users').fetchall()
+        data = connection.execute('SELECT * FROM users').fetchall()
         if not data:
             id = 1
         else:
