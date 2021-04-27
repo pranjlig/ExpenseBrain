@@ -13,6 +13,7 @@ is_true = True
 connection = database.connect()
 
 database.create_create_main_table(connection)
+database.delete(connection)
 
 login_window = LogIn()
 

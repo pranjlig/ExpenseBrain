@@ -6,7 +6,9 @@ def connect():
 
 
 def delete(connection):
-    connection.execute("DELETE FROM user1")
+    connection.execute("DROP TABLE user4")
+    connection.commit()
+    connection.execute("DELETE FROM users where id=4")
     connection.commit()
 
 
