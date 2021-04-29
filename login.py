@@ -58,7 +58,7 @@ class LogIn:
                 self.password_entry.delete(0, END)
             else:
                 value = database.check_password(connection, username, password)
-                if value == "True":
+                if value == "False":
                     messagebox.showinfo(title="Unsuccessful", message="Incorrect password.")
                     self.password_entry.delete(0, END)
                 else:

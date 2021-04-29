@@ -35,7 +35,7 @@ def check_username(connection, username):
 def check_password(connection, username, password):
     data = connection.execute("SELECT id, password FROM users WHERE username = ?", (username,)).fetchone()
     if password != data[1]:
-        return False
+        return "False"
     else:
         return f"user{data[0]}"
 
