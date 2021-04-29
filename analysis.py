@@ -1,6 +1,6 @@
 from tkinter import *
 import matplotlib.pyplot as plt
-from PIL import ImageTk,Image
+from PIL import ImageTk, Image
 import database
 import charts
 import datetime as dt
@@ -38,26 +38,26 @@ class Analysis:
         self.window.mainloop()
 
     def make_bar(self):
-        connection=database.connect()
-        bargraph=database.get_bar(connection, dt.datetime.now().strftime("%m"), dt.datetime.now().strftime("%Y"), self.table)
+        connection = database.connect()
+        bargraph = database.get_bar(connection, dt.datetime.now().strftime("%m"), dt.datetime.now().strftime("%Y"), self.table)
         charts.bar(bargraph)
-        plt.savefig("C:/Users/PRASOON/PycharmProjects/mini-project/images/mygraph.png",dpi=400,bbox_inches="tight")
+        plt.savefig("images/mygraph.png", dpi=400, bbox_inches="tight")
         self.view()
 
     def make_pie(self):
         connection = database.connect()
-        piegraph=database.get_pie(connection, dt.datetime.now().strftime("%m"), dt.datetime.now().strftime("%Y"), self.table)
+        piegraph = database.get_pie(connection, dt.datetime.now().strftime("%m"), dt.datetime.now().strftime("%Y"), self.table)
         charts.pie(piegraph)
-        plt.savefig("C:/Users/PRASOON/PycharmProjects/mini-project/images/mygraph.png",dpi=400,bbox_inches="tight")
+        plt.savefig("images/mygraph.png", dpi=400, bbox_inches="tight")
         self.view()
 
     def view(self):
-        self.img = Image.open("C:/Users/PRASOON/PycharmProjects/mini-project/images/mygraph.png")
+        self.img = Image.open("images/mygraph.png")
 
         self.image = self.img.resize((555, 430), Image.ANTIALIAS)
         self.bg = ImageTk.PhotoImage(self.image)
 
-        self.c= self.graph_canvas.create_image(0,0,image =self.bg, anchor = "nw")
+        self.c = self.graph_canvas.create_image(0, 0, image=self.bg, anchor="nw")
         return self.c
 
     def back_pressed(self):

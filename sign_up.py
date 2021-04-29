@@ -52,6 +52,3 @@ class SignUp:
     def on_closing(self):
         self.is_closed = True
         self.window.destroy()
-
-
-

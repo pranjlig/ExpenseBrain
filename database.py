@@ -53,16 +53,16 @@ def add_user(connection, username, password):
 
 
 def get_data(connection, table, month, year):
-    data=connection.execute(f"SELECT balance, income FROM {table} WHERE date LIKE '{year}_{month}%'").fetchall()
+    data = connection.execute(f"SELECT balance, income FROM {table} WHERE date LIKE '{year}_{month}%'").fetchall()
     return data
 
 
 def add_income(connection, table, date, amount):
-    month=date.split("-")[1]
-    year=date.split("-")[0]
-    data=connection.execute(f"SELECT id, date, balance, income from {table}").fetchall()
-    month_rows_0=connection.execute(f"SELECT id, date, balance, income from {table} WHERE date LIKE '{year}_{month}%' AND priority=0").fetchall()
-    month_rows_all=connection.execute(f"SELECT id, date, balance, income from {table} WHERE date LIKE '{year}_{month}%'").fetchall()
+    month = date.split("-")[1]
+    year = date.split("-")[0]
+    data = connection.execute(f"SELECT id, date, balance, income from {table}").fetchall()
+    month_rows_0 = connection.execute(f"SELECT id, date, balance, income from {table} WHERE date LIKE '{year}_{month}%' AND priority=0").fetchall()
+    month_rows_all = connection.execute(f"SELECT id, date, balance, income from {table} WHERE date LIKE '{year}_{month}%'").fetchall()
     if not data:
         connection.execute(f"INSERT INTO {table}(id, priority, date, balance, income) VALUES(?, ?, ?, ?, ?)", (1, 0, date, amount, amount))
         connection.commit()
@@ -70,17 +70,17 @@ def add_income(connection, table, date, amount):
         connection.execute(f"INSERT INTO {table}(id, priority, date, balance, income) VALUES(?, ?, ?, ?, ?)", (data[-1][0]+1, 0, date, amount, amount))
         connection.commit()
     else:
-        last_row_amount=month_rows_all[-1][3]
-        total_amount=int(amount)+last_row_amount
+        last_row_amount = month_rows_all[-1][3]
+        total_amount = int(amount)+last_row_amount
         connection.execute(f"INSERT INTO {table}(id, priority, date, balance, income) VALUES(?, ?, ?, ?, ?)", (data[-1][0]+1, 0, date, month_rows_all[-1][2]+int(amount), total_amount))
         connection.commit()
 
 
 def add_expense(connection, table, date, amount, category):
-    month=date.split("-")[1]
-    year=date.split("-")[0]
-    data=connection.execute(f"SELECT id, date, balance, income from {table}").fetchall()
-    month_rows=connection.execute(f"SELECT id, date, balance, income from {table} WHERE date LIKE '{year}-{month}%'").fetchall()
+    month = date.split("-")[1]
+    year = date.split("-")[0]
+    data = connection.execute(f"SELECT id, date, balance, income from {table}").fetchall()
+    month_rows = connection.execute(f"SELECT id, date, balance, income from {table} WHERE date LIKE '{year}-{month}%'").fetchall()
     if not data or not month_rows:
         return False
     else:
@@ -107,7 +107,7 @@ def get_bar(connection, month, year, table):
         return data
 
 
-def get_pie(connection, month, year,table):
+def get_pie(connection, month, year, table):
     with connection:
         data = connection.execute(f"SELECT category,SUM(amount) FROM {table} WHERE priority=1 AND date LIKE '{year}_{month}%' GROUP BY category;").fetchall()
         return data

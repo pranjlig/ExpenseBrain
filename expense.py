@@ -27,7 +27,7 @@ class Expense:
         self.category_label = self.canvas.create_text(360, 290, fill="white", text="Category : ", font=("Arial", 17, "bold"))
         self.note_label = self.canvas.create_text(360, 350, fill="white", text="Note        : ", font=("Arial", 17, "bold"))
 
-        self.date_entry=DateEntry(self.canvas, width=27, font=("Arial", 10, "bold"), fg="darkslategray")
+        self.date_entry = DateEntry(self.canvas, width=27, font=("Arial", 10, "bold"), fg="darkslategray")
         self.date_entry.place(x=440, y=161)
         self.amount_entry = Entry(self.canvas, width=30, font=("Arial", 10, "bold"), fg="darkslategray")
         self.amount_entry.place(x=440, y=221)
@@ -68,4 +68,3 @@ class Expense:
             self.amount_entry.delete(0, END)
             self.variable.set("Categories")
             self.note_text.delete("1.0", END)
-

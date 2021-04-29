@@ -21,7 +21,7 @@ class LogIn:
         self.username_entry = Entry(self.canvas, width=30, fg="darkslategray", font=("Arial", 10, "bold"))
         self.username_entry.focus()
         self.username_entry.place(x=800, y=300)
-        self.password_entry = Entry(self.canvas, width=30, fg="darkslategray", font=("Arial", 10, "bold"))
+        self.password_entry = Entry(self.canvas, width=30, show="*", fg="darkslategray", font=("Arial", 10, "bold"))
         self.password_entry.place(x=800, y=350)
         
         login_image = PhotoImage(file="images/1618083819790 (1).png")
@@ -71,5 +71,3 @@ class LogIn:
         if messagebox.askokcancel(title="Quit", message="Do you want to quit?"):
             self.is_closed = True
             self.window.destroy()
-
-

@@ -24,7 +24,7 @@ class Income:
         self.amount_label = self.canvas.create_text(360, 250, fill="white", text="Amount : ", font=("Arial", 17, "bold"))
         self.note_label = self.canvas.create_text(360, 330, fill="white", text="Note       : ", font=("Arial", 17, "bold"))
 
-        self.date_entry=DateEntry(self.canvas, width=27, font=("Arial", 10, "bold"), fg="darkslategray")
+        self.date_entry = DateEntry(self.canvas, width=27, font=("Arial", 10, "bold"), fg="darkslategray")
         self.date_entry.place(x=425, y=171)
         self.amount_entry = Entry(self.canvas, width=30, font=("Arial", 10, "bold"), fg="darkslategray")
         self.amount_entry.place(x=425, y=241)
@@ -54,4 +54,3 @@ class Income:
             messagebox.showinfo(title="Successful", message="Income added.☑")
             self.amount_entry.delete(0, END)
             self.note_text.delete("1.0", END)
-

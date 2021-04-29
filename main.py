@@ -5,8 +5,10 @@ from income import Income
 from expense import Expense
 from transaction import Transaction
 from analysis import Analysis
-import database
 from delete import Delete
+from saving import Savings
+import database
+
 
 is_true = True
 
@@ -48,6 +50,11 @@ while is_true:
             if homepage_window.analysis:
                 analysis_window = Analysis(login_window.table_name)
                 homepage_window = HomePage(login_window.table_name)
+            if homepage_window.suggestion:
+                suggestion_window = Savings(login_window.table_name)
+                homepage_window = HomePage(login_window.table_name)
         login_window = LogIn()
         if login_window.is_closed:
             is_true = False
+    else:
+        is_true = False
